@@ -20,6 +20,8 @@ public struct KGMessageContent {
                                    
 public struct KGMessage {
     
+    public init() {}
+    
     /// Creates a KGMessage instance ready to send as an email message.
     ///
     /// - Paremeter content: The type of messageContent to apply to the email message.
