@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 import MessageUI
 
-struct KGComposeSMS: UIViewControllerRepresentable {
+public struct KGComposeSMS: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var smsResult: MessageComposeResult?
     var recipients: [String]
@@ -31,7 +31,7 @@ struct KGComposeSMS: UIViewControllerRepresentable {
     }
     
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<KGComposeSMS>) -> MFMessageComposeViewController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<KGComposeSMS>) -> MFMessageComposeViewController {
         let vc = MFMessageComposeViewController()
         vc.recipients = recipients
         
@@ -56,20 +56,20 @@ struct KGComposeSMS: UIViewControllerRepresentable {
         return vc
     }
     
-    func updateUIViewController(_ uiViewController: MFMessageComposeViewController, context: UIViewControllerRepresentableContext<KGComposeSMS>) { }
+    public func updateUIViewController(_ uiViewController: MFMessageComposeViewController, context: UIViewControllerRepresentableContext<KGComposeSMS>) { }
     
-    func makeCoordinator() -> Coordinator { Coordinator(self) }
+    public func makeCoordinator() -> Coordinator { Coordinator(self) }
     
     
     // MARK: Coordinator
-    class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
+    public class Coordinator: NSObject, MFMessageComposeViewControllerDelegate {
         var parent: KGComposeSMS
         
-        init(_ parent: KGComposeSMS) {
+        public init(_ parent: KGComposeSMS) {
             self.parent = parent
         }
         
-        func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        public func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
             defer {
                 self.parent.presentationMode.wrappedValue.dismiss()
             }

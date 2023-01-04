@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 import MessageUI
 
-struct KGComposeMailView: UIViewControllerRepresentable {
+public struct KGComposeMailView: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var result: Result<MFMailComposeResult, Error>?
     var toRecipients: [String]
@@ -43,7 +43,7 @@ struct KGComposeMailView: UIViewControllerRepresentable {
     }
     
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<KGComposeMailView>) -> MFMailComposeViewController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<KGComposeMailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
         vc.mailComposeDelegate = context.coordinator
         vc.setToRecipients(toRecipients)
@@ -65,20 +65,20 @@ struct KGComposeMailView: UIViewControllerRepresentable {
         return vc
     }
     
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: UIViewControllerRepresentableContext<KGComposeMailView>) { }
+    public func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: UIViewControllerRepresentableContext<KGComposeMailView>) { }
     
-    func makeCoordinator() -> Coordinator { Coordinator(self) }
+    public func makeCoordinator() -> Coordinator { Coordinator(self) }
 
     
     // MARK: Coordinator
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+    public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         var parent: KGComposeMailView
         
-        init(_ parent: KGComposeMailView) {
+        public init(_ parent: KGComposeMailView) {
             self.parent = parent
         }
         
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
             defer { self.parent.presentationMode.wrappedValue.dismiss() }
             
             guard error == nil else {
