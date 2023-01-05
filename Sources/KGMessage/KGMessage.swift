@@ -20,7 +20,7 @@ public struct KGMessageContent {
                                    
 public struct KGMessage {
     
-    public init() {}
+//    public init() {}
     
     /// Creates a KGMessage instance ready to send as an email message.
     ///
